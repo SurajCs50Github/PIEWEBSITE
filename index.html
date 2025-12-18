@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lazy Engineers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <a class="laser" href="#hero">Lazy Engineers</a>
+    <a class="laser" href="#concept">Concept</a>
+    <a class="laser" href="#disciplines">Disciplines</a>
+    <a class="laser" href="#team">Team</a>
+  </nav>
+
+  <main>
+    <section id="hero" class="hero section">
+      <h1>Lazy Engineers</h1>
+      <p>Optical laser communication between a ground station and a moving object.</p>
+    </section>
+
+    <section id="concept" class="concept section">
+      <div class="section-title">Concept</div>
+      <p>We build and operate a laser-based optical communication link that maintains continuous data flow between a fixed ground station and a moving target. Precision pointing, adaptive beam control, and deterministic software keep latency predictable and throughput stable in dynamic conditions.</p>
+    </section>
+
+    <section id="disciplines" class="section">
+      <div class="section-title">Disciplines</div>
+      <div class="disciplines" role="tablist" aria-label="Disciplines">
+        <button class="active" data-key="mechanical" role="tab" aria-selected="true" aria-controls="discipline-copy">MECHANICAL</button>
+        <button data-key="software" role="tab" aria-selected="false" aria-controls="discipline-copy">SOFTWARE</button>
+        <button data-key="electrical" role="tab" aria-selected="false" aria-controls="discipline-copy">ELECTRICAL</button>
+      </div>
+      <div id="discipline-copy" class="discipline-copy" role="tabpanel">
+        Mechanical: gimbal design, vibration isolation, and beam stabilization to hold alignment under motion.
+      </div>
+    </section>
+
+    <section id="team" class="section">
+      <div class="section-title">Team</div>
+      <div class="team">
+        <a class="laser" href="#">Suraj Reddy</a>
+        <a class="laser" href="#">Troy Anderson</a>
+        <a class="laser" href="#">Bradford Cooper</a>
+        <a class="laser" href="#">Sreesanth Adelli</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Optical laser communication. Built by Lazy Engineers.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
