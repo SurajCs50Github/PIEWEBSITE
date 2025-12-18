@@ -82,6 +82,65 @@ main {
   font-size: 17px;
 }
 
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.markdown h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.markdown p {
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.markdown ul {
+  margin-bottom: 14px;
+  padding-left: 20px;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+}
+
+.markdown li {
+  line-height: 1.5;
+}
+
+.timeline {
+  display: grid;
+  gap: 14px;
+}
+
+.timeline-item {
+  background: #0d0d0d;
+  border: 1px solid #1f1f1f;
+  padding: 12px 14px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.issue {
+  color: #ff4d4d;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.code-block {
+  background: #0d0d0d;
+  border: 1px solid #1f1f1f;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.45;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
 .disciplines {
   display: flex;
   gap: 40px;
@@ -90,18 +149,14 @@ main {
   letter-spacing: 0.05em;
 }
 
-.disciplines button {
-  background: none;
-  border: none;
+.disciplines a {
   color: var(--text);
-  font: inherit;
   padding: 4px 0;
-  cursor: pointer;
   position: relative;
+  text-transform: uppercase;
 }
 
-.disciplines button:hover::after,
-.disciplines button.active::after {
+.disciplines a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -109,13 +164,17 @@ main {
   bottom: -2px;
   height: 2px;
   background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.disciplines a:hover::after,
+.disciplines a:focus-visible::after {
+  opacity: 1;
 }
 
 .discipline-copy {
-  max-width: 760px;
-  color: var(--muted);
-  font-size: 17px;
-  min-height: 60px;
+  display: none;
 }
 
 .team {
@@ -141,5 +200,8 @@ footer {
   }
   .disciplines {
     gap: 24px;
+  }
+  .split {
+    grid-template-columns: 1fr;
   }
 }

@@ -12,9 +12,14 @@
 <body>
   <nav>
     <a class="laser" href="#hero">Lazy Engineers</a>
+    <a class="laser" href="#overview">Overview</a>
     <a class="laser" href="#concept">Concept</a>
+    <a class="laser" href="#media">Media</a>
+    <a class="laser" href="#design">Design</a>
+    <a class="laser" href="#systems">Systems</a>
     <a class="laser" href="#disciplines">Disciplines</a>
     <a class="laser" href="#team">Team</a>
+    <a class="laser" href="#budget">Budget</a>
   </nav>
 
   <main>
@@ -23,20 +28,38 @@
       <p>Optical laser communication between a ground station and a moving object.</p>
     </section>
 
+    <section id="overview" class="section">
+      <div class="section-title">Project Overview</div>
+      <p>Placeholder: write a concise high-level summary of the project objectives, success criteria, and how LED midpoint tracking plus laser pointing deliver the mission outcomes.</p>
+    </section>
+
     <section id="concept" class="concept section">
       <div class="section-title">Concept</div>
       <p>We build and operate a laser-based optical communication link that maintains continuous data flow between a fixed ground station and a moving target. Precision pointing, adaptive beam control, and deterministic software keep latency predictable and throughput stable in dynamic conditions.</p>
     </section>
 
+    <section id="media" class="section">
+      <div class="section-title">Photos & Videos</div>
+      <p>Placeholder: add photos and videos of the final system in action; if it cannot run, show the last integrated prototype and explain suspected issues blocking further demos.</p>
+    </section>
+
+    <section id="design" class="section">
+      <div class="section-title">Design Process</div>
+      <p>Placeholder: describe the design process, trade-offs, and rationale for the final approach (budget constraints, platform familiarity, part availability, and why alternatives were rejected).</p>
+    </section>
+
+    <section id="systems" class="section">
+      <div class="section-title">Systems & Flows</div>
+      <p>Placeholder: system diagram showing subsystem relationships (optics, mechanics, electronics, software, comms) for the final build.</p>
+      <p>Placeholder: data and energy flow diagrams illustrating signal paths and power distribution in the final design.</p>
+    </section>
+
     <section id="disciplines" class="section">
       <div class="section-title">Disciplines</div>
-      <div class="disciplines" role="tablist" aria-label="Disciplines">
-        <button class="active" data-key="mechanical" role="tab" aria-selected="true" aria-controls="discipline-copy">MECHANICAL</button>
-        <button data-key="software" role="tab" aria-selected="false" aria-controls="discipline-copy">SOFTWARE</button>
-        <button data-key="electrical" role="tab" aria-selected="false" aria-controls="discipline-copy">ELECTRICAL</button>
-      </div>
-      <div id="discipline-copy" class="discipline-copy" role="tabpanel">
-        Mechanical: gimbal design, vibration isolation, and beam stabilization to hold alignment under motion.
+      <div class="disciplines tabs" aria-label="Disciplines">
+        <a href="mechanical.html">MECHANICAL</a>
+        <a href="electrical.html">ELECTRICAL</a>
+        <a href="software.html">SOFTWARE</a>
       </div>
     </section>
 
@@ -48,6 +71,11 @@
         <a class="laser" href="#">Bradford Cooper</a>
         <a class="laser" href="#">Sreesanth Adelli</a>
       </div>
+    </section>
+
+    <section id="budget" class="section">
+      <div class="section-title">Budget</div>
+      <p>Placeholder: full bill of materials with component names, quantities, unit cost, estimated cost for freebies, sourcing notes, and total spend vs the $250 cap.</p>
     </section>
   </main>
 
