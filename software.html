@@ -43,6 +43,16 @@
 
           <h3>Full Software/Firmware Narrative</h3>
           <p>Document the end-to-end software stack, firmware choices, and dependencies (e.g., OpenCV, PiCamera2, Raspberry Pi OS). Summarize major trade-offs, integration steps, and link to the full source repo.</p>
+          
+          <h3>Software dependencies (runtime)</h3>
+          <ul>
+            <li>Raspberry Pi OS (Bookworm) with camera stack enabled</li>
+            <li>Python 3.11+</li>
+            <li>OpenCV: <code>python3-opencv</code></li>
+            <li>PiCamera2: <code>python3-picamera2</code></li>
+            <li>RPi.GPIO: <code>python3-rpi.gpio</code></li>
+            <li>NumPy: <code>python3-numpy</code></li>
+          </ul>
         </article>
         <pre class="code-block"><code class="language-python">import time
 import cv2
