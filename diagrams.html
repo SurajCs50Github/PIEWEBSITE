@@ -14,7 +14,7 @@
   </style>
 </head>
 
-<<script>
+<script>
 /* Robust nav active highlighter — place this at the end of each page (before </body>) */
 (function(){
   function normalizePageName(name){
@@ -90,7 +90,7 @@
   <main class="wrap">
     <div class="grad g2">
       <section id="diag-intro">
-        <div class="section-title"><h2>Diagrams: Here is our system and energy dataflow diagrams</h2></div>
+        <div class="section-title"><h2>Diagrams: Here are our system and energy dataflow diagrams</h2></div>
         <!-- <div class="panel placeholder">Here is our system and energy dataflow diagrams:</div> --> <!-- Uncomment if needed -->
       </section>
 
@@ -101,8 +101,8 @@
             <img src="assets/diag1.png" alt="System block diagram" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s,opacity .25s;">
           </a>
           <div>
-            <h3 id="diag1-heading" style="margin-top:0;color:var(--text)">System Block Diagram</h3>
-            <p class="placeholder">Diagram 1 — Lorem ipsum dolor sit amet, consectetur adipiscing elit. This diagram shows the high-level blocks: transmitter, optics, free-space channel, receiver, and host interface.</p>
+            <h3 id="diag1-heading" style="margin-top:0;color:var(--text)">Energy Flow Diagram</h3>
+            <p class="placeholder">There are two different systems with different power requirements, and as such, we have multiple different power sources. A 14.9V Lithium Ion battery that provides power to the motor drivers and the motors. The motor drivers get their control signal from the central RasPi, powered from a separate 5V Lithium Ion battery. That RasPi also provides power to the NoIR camera, which feeds IR camera data back for processing tracking information. Finally, the RasPi provides input power to an STM32, which is responsible for switching the FET controlling the laser. That subsystem is completely electrically isolated from the next. The Receiver STM32 is powered from a 9V battery and is responsible for reading the changing voltages from the photodiode sensor, processing data, and outputting PWM signal to a speaker. </p>
           </div>
         </div>
       </section>
