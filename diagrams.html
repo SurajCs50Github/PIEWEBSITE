@@ -111,12 +111,17 @@
       <section class="diagram-section panel" aria-labelledby="diag2-heading">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
           <div>
-            <h3 id="diag2-heading" style="margin-top:0;color:var(--text)">Receiver Schematic</h3>
-            <p class="placeholder">Diagram 2 — Lorem ipsum dolor sit amet. This schematic details the transimpedance amplifier, filtering stages, and ADC interface used on the receiver board.</p>
+            <h3 id="diag2-heading" style="margin-top:0;color:var(--text)">High Level System Diagram</h3>
+            <p class="placeholder">This diagram shows two of our subsystems, the camera tracking system and laser data transmission system. You 
+              can see in the diagram the camera tracking system operates by the Rasperbrry Pi taking signals from the IR LED, and using that data to 
+              figure out what data to send to the motors. The transmission system can be seen starting with the laser taking commands from
+              the STM32, that then sends its data through a lens, to a photodiode that takes the light input and sends the recieved data to the recieveing end STM32
+              that decrypts the data, and sends the gained information to a speaker. 
+            </p>
           </div>
 
           <a href="assets/diag2.png" target="_blank" style="display:block;overflow:hidden;border-radius:10px;justify-self:end;">
-            <img src="assets/diag2.png" alt="Receiver schematic" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s,opacity .25s;">
+            <img src="assets/diag2.png" alt="High Level System Diagram" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s,opacity .25s;">
           </a>
         </div>
       </section>
