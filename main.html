@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Optical Communications — Project Showcase</title>
+  <meta name="description" content="Optical communications project — mechanical, electrical, and software overview, demo and bill of materials." />
+  
+  <!-- Link external CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<script>
+  const navLinks = document.querySelectorAll('.navlinks a');
+  const currentPage = window.location.pathname.split("/").pop(); // e.g., 'main.html'
+
+  navLinks.forEach(link => {
+    // Get the href file part (ignore anchors like #bom)
+    const linkPage = link.getAttribute('href').split("/").pop().split("#")[0];
+    if(linkPage === currentPage || (linkPage === '' && currentPage === '')) {
+      link.classList.add('active');  // <-- this applies your CSS .active
+    }
+  });
+</script>
+
+
+<body>
+  <!-- Subtle grid and noise background -->
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <nav id="topnav">
+    <div class="navbar">
+      <div class="brand">
+        <div class="logo">LE</div>
+        <div style="font-size:13px;color:var(--text)">Lazy Engineers: Optical Communications</div>
+      </div>
+
+      <div class="navlinks" role="navigation" aria-label="Main navigation">
+        <a href="#hero">Home</a>
+        <a href="diagrams.html">Diagrams</a>
+        <a href="mechanical.html">Mechanical</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="software.html">Software</a>
+        <a href="#bom" class="cta-btn">BOM</a>
+      </div>
+    </div>
+    <div class="navbar-divider"></div>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- Gradient Group 1: Hero + Overview -->
+    <div class="grad g1">
+      <!-- Hero Section -->
+      <header id="hero" class="hero">
+        <div class="hero-media">
+          <video poster="assets/demo-poster.jpg" controls>
+            <source src="assets/demo.mp4" type="video/mp4">
+            <img src="assets/demo-poster.jpg" alt="Demo poster">
+          </video>
+          <div class="hero-caption">The Lazy Engineers Laser Based Optical Communications.</div>
+        </div>
+      </header>
+
+      <!-- Overview Section -->
+      <section id="overview">
+        <div class="section-title"><h2>Project Overview</h2></div>
+        <div class="panel placeholder">Our project was a laser communication system that had two main components: A receiver and a transmitter. <br> <br>
+            The transmitter's purpose was two main things: Track the receiver's IR LEDs, and encode data at a goal transmission rate of 10 kBits/sec. <br> The receiver had two of its own goals: Read if a laser is hitting it, and process whatever data the laser may be sending. Ultimately, this system allows us to move the reciever anywhere within a 30 foot range, and the laser will be able to track it, and beam it data using our laser.</div>
+      </section>
+    </div>
+
+    <!-- Gradient Group 2: Demo + Design Choices -->
+    <div class="grad g2">
+      <!-- Demo Section -->
+      <section id="demo">
+        <div class="section-title"><h2>Demo</h2></div>
+        <div class="panel placeholder">Demo — Lorem ipsum dolor sit amet.</div>
+      </section>
+
+      <!-- Design Areas Section -->
+      <section>
+        <div class="section-title"><h2>Design Areas</h2></div>
+        <div class="cards design-grid">
+          <a href="mechanical.html" class="design-card">
+            <img src="assets/mech.jpg" alt="Mechanical system">
+            <div class="design-text">Mechanical — Lorem ipsum dolor sit amet.</div>
+          </a>
+          <a href="electrical.html" class="design-card">
+            <img src="assets/elec.jpg" alt="Electrical system">
+            <div class="design-text">Electrical — Lorem ipsum dolor sit amet.</div>
+          </a>
+          <a href="software.html" class="design-card">
+            <img src="assets/soft.jpg" alt="Software system">
+            <div class="design-text">Software — Lorem ipsum dolor sit amet.</div>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Gradient Group 3: BOM + Footer -->
+    <div class="grad g3">
+      <!-- BOM Section -->
+      <section id="bom">
+        <div class="section-title"><h2>Bill of Materials</h2></div>
+        <div class="panel placeholder">BOM — Lorem ipsum dolor sit amet.</div>
+      </section>
+
+      <!-- Footer -->
+      <footer aria-label="Footer">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:flex-start">
+          <div>
+            <div style="font-weight:600;color:var(--text)">Lazy Engineers: Optical Communications</div>
+           <div style="margin-top:6px">Team: Bradford Cooper, Troy Anderson, Suraj Reddy, Sreesanth Adelli</div>
+            <div style="margin-top:6px">Course: Principals of Integrated Engineering</div>
+          </div>
+          <div style="text-align:right">
+            <div>Completed: Dec 2025</div>
+            <div style="margin-top:6px;font-size:13px">Olin College of Engineering</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+  </main>
+
+  <!-- Scroll highlight for nav links -->
+  <script>
+    const links = Array.from(document.querySelectorAll('.navlinks a'));
+    const sections = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    function updateActive(){
+      let active = sections[0];
+      for(const s of sections){
+        const r = s.getBoundingClientRect();
+        if(r.top <= 120) active = s;
+      }
+      links.forEach(a=>a.classList.toggle('active', document.querySelector(a.getAttribute('href')) === active));
+    }
+    window.addEventListener('scroll', updateActive, {passive:true});
+    updateActive();
+  </script>
+
+</body>
+</html>

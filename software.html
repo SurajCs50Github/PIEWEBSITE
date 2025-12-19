@@ -1,60 +1,147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Software | Lazy Engineers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Software — Lazy Engineers: Optical Communications</title>
+  <meta name="description" content="Software systems and demos for the project." />
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Page-specific small styles (keeps consistent with your site) */
+    .section-title h2 { font-size:1.5em; }
+
+    .code-preview {
+      background: #071022;
+      border-radius:10px;
+      padding:12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:13px;
+      color: var(--text);
+      border:1px solid rgba(255,255,255,0.03);
+      max-height:260px;
+      overflow:auto;
+      position:relative;
+    }
+
+    .code-toolbar { display:flex; gap:8px; justify-content:flex-end; margin-bottom:8px; }
+    .code-btn { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:600; }
+    .code-btn:hover{ color:var(--accent); }
+
+    .code-modal { display:none; position:fixed; inset:0; z-index:300; background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)); align-items:center; justify-content:center; padding:24px; }
+    .code-modal.active { display:flex; }
+    .code-modal .sheet { width: min(1100px, 96%); max-height:88vh; overflow:auto; background:#060814; border-radius:12px; padding:18px; box-shadow:0 10px 40px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.03); }
+    .code-modal .sheet pre { white-space:pre; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; font-size:13px; color:var(--text); }
+    .code-modal .sheet .close { display:inline-block; margin-bottom:8px; background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:6px 10px; border-radius:8px; cursor:pointer; float:right; }
+
+    .fade-bottom::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:40px; pointer-events:none; background: linear-gradient(180deg, rgba(7,16,34,0) 0%, rgba(7,16,34,1) 100%); }
+
+    @media (max-width:880px){ .code-preview{max-height:300px;} }
+
+    /* laser red divider (used between sections and above footer) */
+    .section-divider {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      box-shadow: 0 0 14px rgba(255, 43, 43, 0.28);
+      width:100%;
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <a class="laser" href="index.html">Lazy Engineers</a>
-    <a class="laser" href="mechanical.html">Mechanical</a>
-    <a class="laser" href="electrical.html">Electrical</a>
-    <a class="laser" href="software.html">Software</a>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <nav id="topnav">
+    <div class="navbar">
+      <div class="brand">
+        <div class="logo">LE</div>
+        <div style="font-size:13px;color:var(--text)">Lazy Engineers: Optical Communications</div>
+      </div>
+
+      <div class="navlinks" role="navigation" aria-label="Main navigation">
+        <a href="main.html">Home</a>
+        <a href="diagrams.html">Diagrams</a>
+        <a href="mechanical.html">Mechanical</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="software.html" class="active">Software</a>
+        <a href="main.html#bom" class="cta-btn">BOM</a>
+      </div>
+    </div>
+    <div class="navbar-divider"></div>
   </nav>
 
-  <main>
-    <section class="hero section">
-      <h1>Software</h1>
-    </section>
+  <main class="wrap">
+    <!-- ONE continuous gradient container for the whole page -->
+    <div class="grad g1">
 
-    <section class="section tracker">
-      <div class="section-title">2-LED Midpoint Tracker</div>
-      <div class="split">
-        <article class="markdown">
-          <h3>What it does</h3>
-          <p>Drives a two-axis laser mount to lock onto the midpoint between two LEDs. Uses PiCamera2 for imaging, OpenCV for detection, and GPIO-driven steppers for pan/tilt. Operators can switch between auto tracking and manual jog, and re-base the lock target with an offset.</p>
+      <!-- ---------------------- System A ---------------------- -->
+      <section id="system-a">
+        <div class="section-title"><h2>2-LED Midpoint Tracker:</h2></div>
 
-          <h3>Hardware and motion</h3>
-          <p>BCM pin map feeds step/dir for pan and tilt with optional inversions to match mechanics. Step timing separates auto cadence from manual jog. A balanced stepping routine keeps both axes coordinated.</p>
+       <div class="video-frame">
+      <video
+        controls
+        preload="metadata"
+        poster="assets/sw-demo-poster.jpg"
+      >
+        <source src="assets/sw_tracking.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+     </video>
+    </div>
 
-          <h3>Imaging and detection</h3>
-          <p>Runs 640x480 with locked exposure and gain to stabilize LED brightness. Thresholding plus contour filtering selects the two brightest blobs; their centers define the midpoint target.</p>
 
-          <h3>Modes and controls</h3>
-          <p><code>A</code> auto track, <code>M</code> manual, <code>S</code> set offset to current midpoint, <code>R</code> reset offset to center, arrow keys for jog, <code>Q</code> quit. Dead-zone prevents jitter; send cadence throttled by <code>SEND_PERIOD</code>.</p>
-
-          <h3>Visualization and safety</h3>
-          <p>Overlay shows lock target, LED contours, midpoint, and error vector, with status text for mode. Cleanup stops camera and clears GPIO; mock GPIO warns when off-Pi.</p>
-
-          <h3>Full Software/Firmware Narrative</h3>
-          <p>Document the end-to-end software stack, firmware choices, and dependencies (e.g., OpenCV, PiCamera2, Raspberry Pi OS). Summarize major trade-offs, integration steps, and link to the full source repo.</p>
-          
-          <h3>Software dependencies (runtime)</h3>
-          <ul>
-            <li>Raspberry Pi OS (Bookworm) with camera stack enabled</li>
-            <li>Python 3.11+</li>
-            <li>OpenCV: <code>python3-opencv</code></li>
-            <li>PiCamera2: <code>python3-picamera2</code></li>
-            <li>RPi.GPIO: <code>python3-rpi.gpio</code></li>
-            <li>NumPy: <code>python3-numpy</code></li>
+        <div style="margin-top:12px" class="panel">
+          <strong>What it Does:</strong>
+          <ul style="margin-top:8px;color:var(--muted)">
+            <li>Drives a two-axis laser mount to lock onto the midpoint between two LEDs. Uses PiCamera2 for imaging, OpenCV for detection, and GPIO-driven steppers for pan/tilt. Operators can switch between auto tracking and manual jog, and re-base the lock target with an offset.</li>
           </ul>
-        </article>
-        <pre class="code-block"><code class="language-python">import time
+        </div>
+
+        <section style="margin-top:18px;">
+          <div class="panel">
+            <h3 style="margin-top:0;color:var(--text)">Hardware and Motion:</h3>
+            <p class="placeholder">BCM pin map feeds step/dir for pan and tilt with optional inversions to match mechanics. Step timing separates auto cadence from manual jog. A balanced stepping routine keeps both axes coordinated.</p>
+
+            <h3 style="margin-top:12px;color:var(--text)">Imaging and Detection:</h3>
+            <p class="placeholder">Runs 640x480 with locked exposure and gain to stabilize LED brightness. Thresholding plus contour filtering selects the two brightest blobs; their centers define the midpoint target.</p>
+
+            <h3 style="margin-top:12px;color:var(--text)">Modes and Controls:</h3>
+            <p class="placeholder">A auto track, M manual, S set offset to current midpoint, R reset offset to center, arrow keys for jog, Q quit. Dead-zone prevents jitter; send cadence throttled by SEND_PERIOD.</p>
+
+            <h3 style="margin-top:12px;color:var(--text)">Visualization and Safety:</h3>
+            <p class="placeholder">Overlay shows lock target, LED contours, midpoint, and error vector, with status text for mode. Cleanup stops camera and clears GPIO; mock GPIO warns when off-Pi.</p>
+
+            <h3 style="margin-top:12px;color:var(--text)">Software/Firmware Narrative:</h3>
+            <p class="placeholder">Document the end-to-end software stack, firmware choices, and dependencies (e.g., OpenCV, PiCamera2, Raspberry Pi OS). Summarize major trade-offs, integration steps, and link to the full source repo.</p>
+
+            <h3 style="margin-top:12px;color:var(--text)">Software dependencies (runtime):</h3>
+            <p class="placeholder"><li>Rasbery Pi OS (Bookworm) With camera stack enabled</li> <li>Python 3.11+</li> <li>OpenCV: python3-picamera2</li> <li>RPi.GPIO: puthon3-rpi.gpio</li> <li>NumPy: python3-numpy</li></p>
+
+
+          </div>
+        </section>
+
+         <div style="margin-top:12px" class="panel">
+          <strong>Challenges & Development Timeline (15+ iterations):</strong>
+          <ul style="margin-top:8px;color:var(--muted)">
+            The project began with a naïve brightest-pixel tracking approach, which immediately exposed a critical limitation: the system repeatedly locked onto ambient light sources such as ceiling fixtures and reflections rather than the intended LEDs. This led us to abandon pure intensity-based detection in favor of object-level reasoning, introducing blob-based detection with spatial filtering to reject large illuminated regions and noise. While this significantly improved robustness, we encountered instability when LED blooming caused blob centroids to drift as distance and exposure changed. To address this, we redesigned the target hardware to use two LEDs instead of one and transitioned to tracking their midpoint, which provided geometric redundancy and a far more stable reference. As vision performance improved, control-related issues became apparent: motor motion was often inverted relative to image-plane error due to wiring and mounting inconsistencies, which we resolved by abstracting axis inversion entirely into software. We also corrected an early control-law mistake in which the system attempted to move toward offsets rather than eliminate them, reformulating the controller as a true negative-feedback loop with a dead zone to prevent oscillation near the target. A deeper physical limitation emerged from the non-coaxial mounting of the camera and laser, causing parallax offsets that made visual centering insufficient for accurate laser pointing. This problem worsened with changes in depth, rendering any fixed calibration invalid. Instead of attempting unreliable geometric modeling, we adopted a human-in-the-loop calibration strategy in which the system records a visually aligned lock point at each new depth and maintains alignment thereafter. Finally, we addressed system-level integration challenges, including timing conflicts between camera frame rate and motor actuation, by throttling control updates and introducing explicit operational modes that allow manual override and recovery without restarting the system. Through approximately fifteen iterations, these combined solutions transformed the system from a fragile proof of concept into a stable, adaptable, and physically grounded tracking platform.
+            </ul>
+        </div>
+
+        
+
+        <!-- code snippet for System A -->
+        <section style="margin-top:10px;">
+            <h2>Code:</h2>
+          <div class="code-toolbar">
+            <div style="flex:1"></div>
+            <button class="code-btn" id="copy-snippet">Copy code</button>
+          </div>
+
+          <div class="code-preview fade-bottom" id="code-preview" aria-hidden="false">
+<pre id="snippet" style="margin:0;"># decoder.py — snippet
+import time
 import cv2
 import numpy as np
 from picamera2 import Picamera2
@@ -239,29 +326,126 @@ try:
 finally:
     cv2.destroyAllWindows()
     picam2.stop()
-    GPIO.cleanup()</code></pre>
-      </div>
+    GPIO.cleanup()
 
-      <div class="video-embed">
-        <h3>COES Expansion Video</h3>
-        <div class="video-frame">
-          <iframe src="https://drive.google.com/file/d/1YXutqKj7GHxax1fi6RzbfvqVLJtcQ8mO/preview" allow="autoplay" allowfullscreen></iframe>
+
+</pre>
+          </div>
+        </section>
+      </section>
+
+      <!-- Divider between System A and System B -->
+      <div style="height:24px"></div>
+      <div class="wrap" aria-hidden="true" style="padding:0;">
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div style="height:24px"></div>
+
+      <!-- ---------------------- System B ---------------------- -->
+      <section id="system-b">
+        <div class="section-title"><h2>Transmission and Reception:</h2></div>
+
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/sw-orch.jpg" alt="System B screenshot" style="width:100%;max-width:980px;height:420px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
         </div>
-        <p class="video-caption">Don't leave before the video ends.</p>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="section-title">Challenges & Development Timeline (15+ iterations)</div>
-      <p class="timeline">The project began with a naïve brightest-pixel tracking approach, which immediately exposed a critical limitation: the system repeatedly locked onto ambient light sources such as ceiling fixtures and reflections rather than the intended LEDs. This led us to abandon pure intensity-based detection in favor of object-level reasoning, introducing blob-based detection with spatial filtering to reject large illuminated regions and noise. While this significantly improved robustness, we encountered instability when LED blooming caused blob centroids to drift as distance and exposure changed. To address this, we redesigned the target hardware to use two LEDs instead of one and transitioned to tracking their midpoint, which provided geometric redundancy and a far more stable reference. As vision performance improved, control-related issues became apparent: motor motion was often inverted relative to image-plane error due to wiring and mounting inconsistencies, which we resolved by abstracting axis inversion entirely into software. We also corrected an early control-law mistake in which the system attempted to move toward offsets rather than eliminate them, reformulating the controller as a true negative-feedback loop with a dead zone to prevent oscillation near the target. A deeper physical limitation emerged from the non-coaxial mounting of the camera and laser, causing parallax offsets that made visual centering insufficient for accurate laser pointing. This problem worsened with changes in depth, rendering any fixed calibration invalid. Instead of attempting unreliable geometric modeling, we adopted a human-in-the-loop calibration strategy in which the system records a visually aligned lock point at each new depth and maintains alignment thereafter. Finally, we addressed system-level integration challenges, including timing conflicts between camera frame rate and motor actuation, by throttling control updates and introducing explicit operational modes that allow manual override and recovery without restarting the system. Through approximately fifteen iterations, these combined solutions transformed the system from a fragile proof of concept into a stable, adaptable, and physically grounded tracking platform.</p>
-    </section>
+        <div style="margin-top:12px" class="panel">
+          <h3 style="margin-top:0;color:var(--text)">Overview</h3>
+          <p class="placeholder">System B manages experiment scheduling, logging, and telemetry aggregation. Provide details and subsections here describing architecture, APIs, and runbook.</p>
+
+          <h3 style="margin-top:12px;color:var(--text)">Integration</h3>
+          <p class="placeholder">How System B connects to System A, data formats, REST endpoints, message queues, etc.</p>
+        </div>
+
+        <!-- code snippet for System B -->
+        <section style="margin-top:18px;">
+          <div class="code-toolbar">
+            <div style="flex:1"></div>
+            <button class="code-btn" id="copy-snippet-2">Copy snippet</button>
+            <button class="code-btn" id="open-full-2">Show full code</button>
+          </div>
+
+          <div class="code-preview fade-bottom" id="code-preview-2" aria-hidden="false">
+<pre id="snippet-2" style="margin:0;"># orchestrator.py — snippet
+import json
+import requests
+
+class Orchestrator:
+    def __init__(self, server_url):
+        self.server = server_url
+
+    def schedule(self, job):
+        # submit job to runner
+        requests.post(self.server + '/jobs', json=job)
+
+# ... (more lines in full file)
+</pre>
+          </div>
+        </section>
+
+      </section>
+
+     
+
+      <!-- ---------------------- Footer ---------------------- -->
+      <footer aria-label="Footer" style="padding-bottom:28px;">
+        <div class="wrap">
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:flex-start">
+            <div>
+              <div style="font-weight:600;color:var(--text)">Lazy Engineers: Optical Communications</div>
+              <div style="margin-top:6px">Team: Bradford Cooper, Troy Anderson, Suraj Reddy, Sreesanth Adelli</div>
+              <div style="margin-top:6px">Course: Principals of Integrated Engineering</div>
+            </div>
+            <div style="text-align:right">
+              <div>Completed: Dec 2025</div>
+              <div style="margin-top:6px;font-size:13px">Olin College of Engineering</div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div> <!-- end continuous grad g1 -->
   </main>
 
-  <footer>
-    Optical laser communication. Built by Lazy Engineers.
-  </footer>
+  <!-- Full-code modals & JS same as before -->
+  <script>
+    // Highlight current nav link
+    (function(){
+      const navLinks = document.querySelectorAll('.navlinks a');
+      const currentPage = window.location.pathname.split('/').pop();
+      navLinks.forEach(link=>{
+        const linkPage = (link.getAttribute('href')||'').split('/').pop().split('#')[0];
+        if(linkPage === currentPage || (linkPage === '' && currentPage === '')) link.classList.add('active');
+      });
+    })();
+
+    // code modal 1
+    const modal = document.getElementById('code-modal');
+    const openBtn = document.getElementById('open-full');
+    const closeBtn = document.getElementById('close-modal');
+    openBtn?.addEventListener('click', ()=>{ modal.classList.add('active'); modal.setAttribute('aria-hidden','false'); });
+    closeBtn?.addEventListener('click', ()=>{ modal.classList.remove('active'); modal.setAttribute('aria-hidden','true'); });
+
+    // code modal 2
+    const modal2 = document.getElementById('code-modal-2');
+    const openBtn2 = document.getElementById('open-full-2');
+    const closeBtn2 = document.getElementById('close-modal-2');
+    openBtn2?.addEventListener('click', ()=>{ modal2.classList.add('active'); modal2.setAttribute('aria-hidden','false'); });
+    closeBtn2?.addEventListener('click', ()=>{ modal2.classList.remove('active'); modal2.setAttribute('aria-hidden','true'); });
+
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') { modal?.classList.remove('active'); modal?.setAttribute('aria-hidden','true'); modal2?.classList.remove('active'); modal2?.setAttribute('aria-hidden','true'); } });
+
+    // copy snippet 1
+    document.getElementById('copy-snippet')?.addEventListener('click', async ()=>{
+      const txt = document.getElementById('snippet')?.innerText || '';
+      try { await navigator.clipboard.writeText(txt); const b = document.getElementById('copy-snippet'); const old = b.innerText; b.innerText = 'Copied'; setTimeout(()=> b.innerText = old, 1200); } catch(e){ alert('Copy failed — please select and copy manually.'); }
+    });
+
+    // copy snippet 2
+    document.getElementById('copy-snippet-2')?.addEventListener('click', async ()=>{
+      const txt = document.getElementById('snippet-2')?.innerText || '';
+      try { await navigator.clipboard.writeText(txt); const b = document.getElementById('copy-snippet-2'); const old = b.innerText; b.innerText = 'Copied'; setTimeout(()=> b.innerText = old, 1200); } catch(e){ alert('Copy failed — please select and copy manually.'); }
+    });
+  </script>
 </body>
 </html>
-
-
-

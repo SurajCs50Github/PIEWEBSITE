@@ -1,101 +1,249 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mechanical | Lazy Engineers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mechanical — Lazy Engineers: Optical Communications</title>
+  <meta name="description" content="Mechanical design and ground station imagery." />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Page-specific sizing & spacing */
+    .section-title h2 { font-size: 1.5em; }
+    .hero-large { max-width:1100px; height:520px; object-fit:cover; display:block; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
+    .large-media { width:100%; max-width:980px; height:360px; object-fit:cover; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
+    .three-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; align-items:start; }
+    .three-grid img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+    .spacer-vertical{margin-bottom:3rem}
+    .paired-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .paired-row.reverse{grid-template-columns:1fr 1fr;}
+    .section-divider{height:3px;margin:36px 0;background:linear-gradient(90deg,transparent,var(--accent),transparent);box-shadow:0 0 14px rgba(255,43,43,0.28)}
+
+    @media (max-width:880px){
+      .paired-row, .three-grid { grid-template-columns:1fr; }
+      .three-grid img{height:200px}
+      .hero-large{height:320px}
+      .large-media{height:260px}
+    }
+  </style>
 </head>
+
+<script>
+/* Robust nav active highlighter — place this at the end of each page (before </body>) */
+(function(){
+  function normalizePageName(name){
+    name = (name||'').toLowerCase().trim();
+    // strip querystring
+    name = name.split('?')[0].split('#')[0];
+    if(name === '' || name === 'index.html') return 'main.html'; // change if your home file is different
+    return name;
+  }
+
+  function setActiveNav(){
+    const navLinks = document.querySelectorAll('.navlinks a');
+    if(!navLinks.length) return;
+    // current page file (e.g. 'main.html' or 'software.html')
+    const rawPath = window.location.pathname.split('/').pop();
+    const current = normalizePageName(rawPath);
+
+    navLinks.forEach(link=>{
+      const href = link.getAttribute('href') || '';
+      // take last path segment, ignore anchors (#bom) and querystrings
+      const linkFile = href.split('/').pop().split('#')[0].split('?')[0];
+      const target = normalizePageName(linkFile);
+      // handle links that are anchors to the current page like "#bom"
+      if(href.startsWith('#')){
+        // highlight if on the home/main page or same file with anchor
+        if(current === normalizePageName(window.location.pathname.split('/').pop())) {
+          // don't auto-activate anchor links unless desired — keep as non-active by default
+          link.classList.remove('active');
+          return;
+        }
+      }
+      if(target === current){
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', setActiveNav);
+  } else {
+    setActiveNav();
+  }
+})();
+</script>
+
+
 <body>
-  <nav>
-    <a class="laser" href="index.html">Lazy Engineers</a>
-    <a class="laser" href="mechanical.html">Mechanical</a>
-    <a class="laser" href="electrical.html">Electrical</a>
-    <a class="laser" href="software.html">Software</a>
-  </nav>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
-  <main>
-    <section class="hero section">
-      <h1>Mechanical</h1>
-    </section>
-
-    <section class="section">
-      <div class="section-title">Our Ground Station</div>
-      <img src="images/ground_station_assem.png" alt="Project image">
-      <p>This image is our final assmebly for our ground station. It is entirly 3d printed. It features holdings for 
-        two stepper motors, a raspberry pi, a lithium battery, two stepper motor drivers, a portable charger, and our camera. 
-      </p>
-    <section class="section">
-      <div class="section-title">X-base stepper driver</div>
-      <img src="images/x_stepper_holder.png" alt="Project image">
-      <p>This part of the ground station holds our x-axis parts. This includes a motor driver (goes in right compartment), and our stepper motor
-        (goes in left compartment). In the right compartment, room is also left to hold our lithium battery. 
-      </p>
-       <section class="section">
-      <div class="section-title">X-base stepper driver covers</div>
-
-      <div class="image-row">
-        <img src="images/bottom_side_cover.png" alt="Project image">
-        <img src="images/driver_cover.png" alt="Project image">
-        <img src="images/top_side_cover.png" alt="Project image">
+  <nav id="topnav">
+    <div class="navbar">
+      <div class="brand">
+        <div class="logo">LE</div>
+        <div style="font-size:13px;color:var(--text)">Lazy Engineers: Optical Communications</div>
       </div>
 
-      <p>These parts all make up the covers that go on to the x-base stepper driver. The right image is the top side cover and 
-        the left image is the bottom side cover. These were split into two parts to allow us to feed the power wires through the 
-        made holes to easily let us plug and unplug our ground station. The top cover (middle image) then covers the right compartment, and comes with a hole 
-        through it to allow us to feed the wires from the motor driver that need to connect to the raspberry pi. All parts including the motor are 
-        screw pressed onto our ground station.
-      </p>
-      <div class="section-title">Y Axis Stepper Holder</div>
-      <img src="images/y_axis_stepper_holder.png" alt="Project image">
-      <p>This is another main part that makes up our ground station. It holds our stepper motor for our y-axis movement (right compartment) for our tracking
-        system, as well as the motor driver for it (left compartment). It also has a spot right above where the motor compartment is to put our portable charger onto.
-        This charger then powers our Raspberry Pi. 
-      </p>
-       <div class="section-title">Raspberry Pi Cover</div>
-      <img src="images/rasp_pi_cover.png" alt="Project image">
-      <p>This cover goes above the motor driver compartment to both cover the wiring around the motor driver and hold our
-        Raspberry Pi. The cover, a lot like our top x axis cover, has a cut in it to allow for feeding wires. It then has edges that
-        stick out to allow us to press fit the Raspberry Pi into them.
-      </p>
-       <div class="section-title">Camera and Laser Holder</div>
-      <img src="images/camera_holder.png" alt="Project image">
-      <p>This holder attaches to the rod on the y-axis stepper motor. It holds our camera, our camera filter, and our laser
-        being one of our most important components for camera tracking. The laser is put on in a way to keep the offset between
-        the camera and laser almost constant no matter the distance. The camera slides into the back slot, and a smaller slot in front
-        holds our filter. On the side the laser is put in (pressed fit in) to have it move with the camera. 
-      </p>
-       <div class="section-title">Reciever Model</div>
-      <img src="images/reciever_assem.png" alt="Project image">
-      <p>This is the model of our main reciever. The model allows us to insert our convex lens into the circle of the reciever
-        with a press fit down, and includes holes in the corners of the circle to allow for the wiring of our two LEDs. The box is 
-        wider on one side of the circle to allow for extra space to store the battery that powers our LEDs as well. 
-      </p>
-      <div class="section-title">Reciever Middle/Main Component</div>
-      <img src="images/reciever_middle.png" alt="Project image">
-      <p>This is the middle part of our reciever that on top as a cicular hole to allow for room of the lens. It also has holes
-        for the IR LED wires. It is made a specifc width as the lens focuses light to a central points 50 mm behind it.
-      </p>
-      <div class="section-title">Reciever Top</div>
-      <img src="images/reciever_top.png" alt="Project image">
-      <p>This is the top of our led that is pushed down on the main body that keeps the lens in place. It provides holes to 
-        let the wires for LEDs go through. 
-      </p>
-      <div class="section-title">Reciever Bottom</div>
-      <img src="images/reciever_bottom.png" alt="Project image">
-      <p>This is the bottom of our led that is press fitted on to the main body. The hole is placed parallel to the 
-        middle of the circle, where the lens focuses the laser onto, which the hole contains our photodiodes. 
-      </p>
+      <div class="navlinks" role="navigation" aria-label="Main navigation">
+        <a href="main.html">Home</a>
+        <a href="diagrams.html">Diagrams</a>
+        <a href="mechanical.html" class="active">Mechanical</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="software.html">Software</a>
+        <a href="main.html#bom" class="cta-btn">BOM</a>
+      </div>
+    </div>
+    <div class="navbar-divider"></div>
+  </nav>
 
+  <main class="wrap">
+    <div class="grad g1">
 
-    </section>
+      <!-- Title -->
+      <section>
+        <div class="section-title"><h2>Mechanical: Aspects and Design Choices</h2></div>
+      </section>
+
+      <!-- Hero shot of ground station assembly -->
+      <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/mech-hero.jpg" alt="Mechanical ground station assembly" class="hero-large">
+        </div>
+        <div style="margin-top:12px" class="panel">Hero caption — Lorem ipsum dolor sit amet. Brief text area under the hero shot.</div>
+      </section>
+
+      <!-- Large central image and text -->
+      <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/mech-center1.jpg" alt="Ground station section" class="large-media">
+        </div>
+        <div style="margin-top:12px" class="panel">Explanation — Lorem ipsum dolor sit amet. This paragraph discusses the central subsystem shown above.</div>
+      </section>
+
+      <!-- Three images side-by-side -->
+      <section class="spacer-vertical">
+        <div class="three-grid">
+          <div>
+            <img src="assets/mech-part1.jpg" alt="Part 1">
+            <div class="design-text">Part 1 — one-sentence description.</div>
+          </div>
+          <div>
+            <img src="assets/mech-part2.jpg" alt="Part 2">
+            <div class="design-text">Part 2 — one-sentence description.</div>
+          </div>
+          <div>
+            <img src="assets/mech-part3.jpg" alt="Part 3">
+            <div class="design-text">Part 3 — one-sentence description.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px" class="panel">Combined discussion — A larger block of text that discusses all three images above together. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac dui vitae arcu vehicula sodales.</div>
+      </section>
+
+      <!-- Another large central image & text -->
+      <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/mech-center2.jpg" alt="Ground station subassembly" class="large-media">
+        </div>
+        <div style="margin-top:12px" class="panel">Subassembly explanation — Lorem ipsum dolor sit amet. Detailed description under the image.</div>
+      </section>
+
+      <!-- Laser red divider to mark end of ground station -->
+      <section>
+        <div class="section-divider" aria-hidden="true"></div>
+      </section>
+
+      <!-- Extra components: two paired sections -->
+      <section class="spacer-vertical">
+        <div class="paired-row">
+          <div style="max-width:560px">
+            <img src="assets/extra-left.jpg" alt="Extra component A" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
+          </div>
+          <div class="panel">Component A description — Lorem ipsum dolor sit amet. Explain how this part interfaces with the ground station.</div>
+        </div>
+      </section>
+
+      <section class="spacer-vertical">
+        <div class="paired-row" style="align-items:center;">
+          <div class="panel">Component B description — Lorem ipsum dolor sit amet. Explanation and notes about this complementary component.</div>
+          <div style="max-width:560px">
+            <img src="assets/extra-right.jpg" alt="Extra component B" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
+          </div>
+        </div>
+      </section>
+
+      <!-- One more less-than-hero image with text -->
+      <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/mech-small.jpg" alt="Small feature" class="large-media">
+        </div>
+        <div style="margin-top:12px" class="panel">Feature description — Lorem ipsum dolor sit amet. Text describing the image above.</div>
+      </section>
+
+      <!-- Three images next to each other with text underneath each -->
+      <section class="spacer-vertical">
+        <div class="three-grid">
+          <div>
+            <img src="assets/mech-sub1.jpg" alt="Subpart 1">
+            <div class="design-text">Subpart 1 — caption text.</div>
+          </div>
+          <div>
+            <img src="assets/mech-sub2.jpg" alt="Subpart 2">
+            <div class="design-text">Subpart 2 — caption text.</div>
+          </div>
+          <div>
+            <img src="assets/mech-sub3.jpg" alt="Subpart 3">
+            <div class="design-text">Subpart 3 — caption text.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px" class="panel">Final notes — A paragraph that discusses each of the above subparts and closes out the mechanical section.</div>
+      </section>
+
+      <!-- ensure footer follows immediately and has breathing room -->
+      <section style="padding-bottom:28px"></section>
+
+      <footer aria-label="Footer">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:flex-start">
+          <div>
+            <div style="font-weight:600;color:var(--text)">Lazy Engineers: Optical Communications</div>
+            <div style="margin-top:6px">Team: Bradford Cooper, Troy Anderson, Suraj Reddy, Sreesanth Adelli</div>
+            <div style="margin-top:6px">Course: Principals of Integrated Engineering</div>
+          </div>
+          <div style="text-align:right">
+            <div>Completed: Dec 2025</div>
+            <div style="margin-top:6px;font-size:13px">Olin College of Engineering</div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
   </main>
 
-  <footer>
-    Optical laser communication. Built by Lazy Engineers.
-  </footer>
+  <script>
+    // image hover affordances
+    document.querySelectorAll('img').forEach(img=>{
+      const p = img.parentElement;
+      p?.addEventListener('mouseenter', ()=>{ img.style.transform='scale(0.995)'; img.style.opacity='0.96'; });
+      p?.addEventListener('mouseleave', ()=>{ img.style.transform='none'; img.style.opacity='1'; });
+    });
+
+    // keep nav highlight behavior
+    const links = Array.from(document.querySelectorAll('.navlinks a'));
+    const sections = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    function updateActive(){
+      let active = sections[0];
+      for(const s of sections){
+        const r = s.getBoundingClientRect();
+        if(r.top <= 120) active = s;
+      }
+      links.forEach(a=>a.classList.toggle('active', document.querySelector(a.getAttribute('href')) === active));
+    }
+    window.addEventListener('scroll', updateActive, {passive:true});
+    updateActive();
+  </script>
 </body>
 </html>
