@@ -31,7 +31,7 @@
  <section id="overview" class="section">
   <div class="section-title">Project Overview</div>
   <p>Our project was a laser communication system that had two main components: <br> A receiver and a transmitter. <br><br>
-    The transmitter's purpose was two main things:<br> Track the receiver's IR LEDs, and pulse a laser at (target freq). <br> <br>
+    The transmitter's purpose was two main things:<br> Track the receiver's IR LEDs, and encode data at a goal transmission rate of 10 kBits/sec. <br> <br>
     The receiver had two of its own goals: <br> Read if a laser is hitting it, and process whatever data the laser may be sending.<br><br>
     Ultimately, this system allows us to move the reciever anywhere within a 30 foot range, and the laser will be able to track it, and beam it
     data using our laser.
@@ -48,7 +48,7 @@
     <section id="media" class="section">
       <div class="section-title">Photos & Videos</div>
       <p> This a photograph of our (near) final reciever and transmitter builds. Note this does not show the STM32 on the 
-        reciever side as we were unable to complete the working software for it. </p>
+        transmitter side as we were unable to integrate the software. </p>
       <img src="images/reciever_and_transmitter.png" alt="Project image">
         <p>This is a short video that shows our project in action. You can see we hold the reciever, and move it around. On the reciever, the laser hits the lens in the middle
         The camera tracking allows the laser to stay right on the middle of the lens at all times. The data transmission part of the project did not end up working for testing. 
@@ -81,7 +81,13 @@
 
 
         Laser transmission design process: <br><br>
-        Placeholder: describe the design process, trade-offs, and rationale for the final approach (budget constraints, platform familiarity, part availability, and why alternatives were rejected).</p>
+          For the laser transmission system, we deliberately chose a bare-metal STM32 platform to maximize our learning and minimize abstraction. Working directly on the STM32 allowed us to interact with low-level hardware features, timers, and ADCs, giving us full control over the transmission and reception process, though it does come with difficulties in that we cannot debug easily, do not fully understand what is going on, and makes development process harder.<br><br>
+          For the optical receiver, we selected BPW34 photodiodes due to their accessibility and reasonable sensitivity for our visible-range laser. Initially, we planned to design a more sophisticated electrical front end, including a transimpedance amplifier (TIA) to convert the photodiode current to voltage. However, testing revealed that a simple resistor in series with the photodiode provided sufficient voltage output for detection. This simplified our design, reduced part count, and made debugging more straightforward.<br><br>
+          We decided to use Manchester line encoding for data transmission. Manchester encoding offered two key advantages: it embeds clock information within the signal, allowing for simpler synchronization between the transmitter and receiver, and it is relatively straightforward to implement in software while still being robust enough to handle noise and timing variations in our setup.<br><br>
+          We targeted a data transmission rate of 10 kbits/sec, which is a good balance in between complexity/difficulty and utility of usage. We planned on using this data to play a speaker, where the frequency depended on the transmitter - effectively playing a song.<br><br>
+          Despite these careful design choices, the final decoding software on the STM32 did not function as intended. Extensive debugging did not reveal the root cause, but we believe this difficulty stems from mistiming our samples and the way we interfaced with the STM32 peripherals for high-speed sampling and signal decoding. In hindsight, the better approach would have been to first start with something like an Arduino, and then move forward with an STM32 after we had gotten a base decoding system working, taking full advantage of the Arduino's ease of use compared to the STM32. This would have allowed us to focus on the decoding algorithm instead of worrying about low level hardware interfacing code.<br><br>
+          We did manage to detect light, and decode bits individually during testing. We were able to have the speaker play certain tones based on the presence of the laser, which did help with debugging the tracking part of our project.
+          </p>
     </section>
 
 
