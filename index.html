@@ -28,30 +28,78 @@
       <p>Optical laser communication between a ground station and a moving object.</p>
     </section>
 
-    <section id="overview" class="section">
-      <div class="section-title">Project Overview</div>
-      <p>Placeholder: write a concise high-level summary of the project objectives, success criteria, and how LED midpoint tracking plus laser pointing deliver the mission outcomes.</p>
-    </section>
+ <section id="overview" class="section">
+  <div class="section-title">Project Overview</div>
+  <p>Our project was a laser communication system that had two main components: <br> A receiver and a transmitter. <br><br>
+    The transmitter's purpose was two main things:<br> Track the receiver's IR LEDs, and pulse a laser at (target freq). <br> <br>
+    The receiver had two of its own goals: <br> Read if a laser is hitting it, and process whatever data the laser may be sending.<br><br>
+    Ultimately, this system allows us to move the reciever anywhere within a 30 foot range, and the laser will be able to track it, and beam it
+    data using our laser.
+  </p>
+</section>
 
-    <section id="concept" class="concept section">
+
+ <section id="concept" class="concept section">
       <div class="section-title">Concept</div>
       <p>We build and operate a laser-based optical communication link that maintains continuous data flow between a fixed ground station and a moving target. Precision pointing, adaptive beam control, and deterministic software keep latency predictable and throughput stable in dynamic conditions.</p>
     </section>
 
+
     <section id="media" class="section">
       <div class="section-title">Photos & Videos</div>
-      <p>Placeholder: add photos and videos of the final system in action; if it cannot run, show the last integrated prototype and explain suspected issues blocking further demos.</p>
+      <p> This a photograph of our (near) final reciever and transmitter builds. Note this does not show the STM32 on the 
+        reciever side as we were unable to complete the working software for it. </p>
+      <img src="images/reciever_and_transmitter.png" alt="Project image">
+        <p>This is a short video that shows our project in action. You can see we hold the reciever, and move it around. On the reciever, the laser hits the lens in the middle
+        The camera tracking allows the laser to stay right on the middle of the lens at all times. The data transmission part of the project did not end up working for testing. 
+        You can also on the monitor in the video what the camera vision looks like, which should show that the IR LED stays on 
+        the center of the screen. 
+      </p>
+      <video width="640" height="360" controls>
+      <source src="images/final_demo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
     </section>
+
 
     <section id="design" class="section">
       <div class="section-title">Design Process</div>
-      <p>Placeholder: describe the design process, trade-offs, and rationale for the final approach (budget constraints, platform familiarity, part availability, and why alternatives were rejected).</p>
+      <p> Tracking system design process: <br><br> For this part of the project we struglled most intially
+        with deciding what type of motors would be best for the type of precision we were hoping to achieve.
+        We origiinally thought of a gimbal motor, but after looking into it, though it can be very accurate, that is only possible
+        with good motor control which we thought would be a limiting factor. So, we decided to move to either stepper motors. After deciding what motors to use,
+        we had to figure out how to use actually see the IR leds on the reciever. We bought a NOIR camera that allows us to see IR light, and with it coming with a 22 pin
+        connector we were able to connect it to a raspberry pi, that would allow us to process the info. This created a problem for us as we controlled the motors with an arduino
+        (originally chosen for being on hand when starting the project). Since we had to introduce a feedback system between the camera and the motors, we had to connect
+        the arduino and raspebrry pi together to send data between the two. We found this less than ideal and made our components grow more than needed. So, we decided to switch motor control over to the raspberry pi,
+        making it control both our camera vision software as well as our motor control software simulatneously.<br><br>
+        On the reciever side of the tracking, we originally decided to use a breadboard IR LED. However, after testing, we found them to be much too weak to actually be spotted by our gimbal system. So, we switched to a
+        3W IR led that was much more powerful and worked great for our camera vision. To power the LEDs we originally powered them with a double-A battery pack. This caused problems later on, however, as since we used no
+        resistors (we opted not to as we wanted to draw as much power as possible for our LEDs, though is not best practice) our batteries died incredbly fast. After a few cases of people forgetting to unplug the batteries after use,
+        we had killed all the double-A batteries accessible to us. Due to time constrants of getting batteries, as well as money constraints, we switched to 9V batteries we had access to. More info on the process of the tracking system
+        is explained our software section. <br><br>
+
+
+        Laser transmission design process: <br><br>
+        Placeholder: describe the design process, trade-offs, and rationale for the final approach (budget constraints, platform familiarity, part availability, and why alternatives were rejected).</p>
     </section>
+
 
     <section id="systems" class="section">
       <div class="section-title">Systems & Flows</div>
-      <p>Placeholder: system diagram showing subsystem relationships (optics, mechanics, electronics, software, comms) for the final build.</p>
-      <p>Placeholder: data and energy flow diagrams illustrating signal paths and power distribution in the final design.</p>
+      <p>High Level System Diagram</p>
+      <img src="images/system_diagram.jpeg" alt="Project image">
+      <p>This chart shows the tracking system and our transmision system. You can see the camera watches the IR leds and based
+        on where those are it will send data to the motors to move the system in the right direction. In the transmission system you 
+        can see the STM32 on transmission side controlling the laser, that then shines through a convex lens to make the laser point converge
+        onto the photodiode and that information is then sent to recieving side STM32 for processing. 
+      </p>
+      <p>Energy and data flow diagram</p>
+      <img src="images/energy_and_data_flow.png" alt="Project image">
+      <p>This chart represents how energy and data flow through our project. You can see how both the tracking system
+        and the reciever interact to be able to correcly transmit data through our laser and into our photodiode to be able to
+        be translated by our STM32 on the reciever side.
+      </p>
     </section>
 
     <section id="disciplines" class="section">
@@ -61,6 +109,8 @@
         <a href="electrical.html">ELECTRICAL</a>
         <a href="software.html">SOFTWARE</a>
       </div>
+      <p><span style="font-size: 0.9em;">These will take you to more detailed pages about each aspect of the project
+      </span></p>
     </section>
 
     <section id="team" class="section">
