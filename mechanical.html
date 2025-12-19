@@ -107,13 +107,20 @@
         <div class="section-title"><h2>Mechanical: Aspects and Design Choices</h2></div>
       </section>
 
+      <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;"> 
+          <img src="assets/reciever_and_transmitter.png" alt="Mechanical ground station assembly" class="hero-large">
+        </div>
+        <div style="margin-top:12px" class="panel">Final Project Systems </div>
+      </section>
+
+
       <!-- Hero shot of ground station assembly -->
       <section class="spacer-vertical">
         <div style="display:flex;justify-content:center;">
-          <p><div class="section-title">Our Ground Station</div> </p>
           <img src="assets/ground_station_assem.png" alt="Mechanical ground station assembly" class="hero-large">
         </div>
-        <div style="margin-top:12px" class="panel">This image is our final assmebly for our ground station. It is entirly 3d printed. It features holdings for 
+        <div style="margin-top:12px" class="panel">Our Ground Station <br> <br>This image is our final assmebly for our ground station. It is entirly 3d printed. It features holdings for 
         two stepper motors, a raspberry pi, a lithium battery, two stepper motor drivers, a portable charger, and our camera.
         Our orginal model only consisted of a x and y stepper motor holder. This made the design very messy, and led to limited
         rotation ability in our ground station as wires were getting caught or resisting to be bent, specially by the HDMI cable.
@@ -127,16 +134,15 @@
       <!-- Large central image and text -->
       <section class="spacer-vertical">
         <div style="display:flex;justify-content:center;">
-          <div class="section-title">X axis Holder</div> <br>
           <img src="assets/x_stepper_holder.png" alt="Ground station section" class="large-media">
         </div>
-        <div style="margin-top:12px" class="panel">This part of the ground station holds our x-axis parts. This includes a motor driver (goes in right compartment), and our stepper motor
+        <div style="margin-top:12px" class="panel">X Axis Holder <br> <br>This part of the ground station holds our x-axis parts. This includes a motor driver (goes in right compartment), and our stepper motor
         (goes in left compartment). In the right compartment, room is also left to hold our lithium battery. </div>
       </section>
 
       <!-- Three images side-by-side -->
       <section class="spacer-vertical">
-        <div class="section-title">X Axis Cover</div>
+        <div class="section-title">X Axis Covers</div>
         <div class="three-grid">
           <div>
             <img src="assets/bottom_side_cover.png" alt="Part 1">
@@ -166,12 +172,32 @@
       <!-- Another large central image & text -->
       <section class="spacer-vertical">
         <div style="display:flex;justify-content:center;">
-          <div class="section-title">Y axis Holder</div> <br>
           <img src="assets/y_axis_stepper_holder.png" alt="y axis" class="large-media">
         </div>
-        <div style="margin-top:12px" class="panel">This is another main part that makes up our ground station. It holds our stepper motor for our y-axis movement (right compartment) for our tracking
+        <div style="margin-top:12px" class="panel">Y-Axis Holder <br> <br> This is another main part that makes up our ground station. It holds our stepper motor for our y-axis movement (right compartment) for our tracking
         system, as well as the motor driver for it (left compartment). It also has a spot right above where the motor compartment is to put our portable charger onto.
         This charger then powers our Raspberry Pi. </div>
+      </section>
+
+         <!-- Another large central image & text -->
+      <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/rasp_pi_cover.png" alt="y axis" class="large-media">
+        </div>
+        <div style="margin-top:12px" class="panel">Raspberry Pi <br> <br>This cover goes above the motor driver compartment to both cover the wiring around the motor driver and hold our
+        Raspberry Pi. The cover, a lot like our top x axis cover, has a cut in it to allow for feeding wires. It then has edges that
+        stick out to allow us to press fit the Raspberry Pi into them.</div>
+      </section>
+
+      
+         <!-- Another large central image & text -->
+      <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/camera_holder.png" alt="y axis" class="large-media">
+        </div>
+        <div style="margin-top:12px" class="panel">Laser and Camera Holder <br> <br>This cover goes above the motor driver compartment to both cover the wiring around the motor driver and hold our
+        Raspberry Pi. The cover, a lot like our top x axis cover, has a cut in it to allow for feeding wires. It then has edges that
+        stick out to allow us to press fit the Raspberry Pi into them.</div>
       </section>
 
       <!-- Laser red divider to mark end of ground station -->
@@ -179,21 +205,38 @@
         <div class="section-divider" aria-hidden="true"></div>
       </section>
 
+        <section class="spacer-vertical">
+        <div style="display:flex;justify-content:center;">
+          <img src="assets/reciever_assem.png" alt="y axis" class="large-media">
+        </div>
+        <div style="margin-top:12px" class="panel">Reciever Assembly <br> <br>This is the model of our main reciever. The model allows us to insert our convex lens into the circle of the reciever
+        with a press fit down, and includes holes in the corners of the circle to allow for the wiring of our two LEDs. The box is 
+        wider on one side of the circle to allow for extra space to store the battery that powers our LEDs as well. Our original model 
+        had multiple design flaws. It lacked holes for wires for our IR leds, which made it wiring very messy as the wires went around the box. 
+        To fix this I added holes in the corners of our main circle where the IR LEDs would go. Also our original design had the lens
+        slide into a tight compartment rather than being press fitted down by closing the cover on it. These risked damaging the lens
+        as you slid it in, which we wanted to prevent with our new design. Lastly, to improve the design I made the extra space for the battery
+        to limit messy wiring outside the box. </div>
+      </section>
+
+
       <!-- Extra components: two paired sections -->
       <section class="spacer-vertical">
         <div class="paired-row">
           <div style="max-width:560px">
-            <img src="assets/extra-left.jpg" alt="Extra component A" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
+            <img src="assets/reciever_top.png" alt="Extra component A" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
           </div>
-          <div class="panel">Component A description — Lorem ipsum dolor sit amet. Explain how this part interfaces with the ground station.</div>
+          <div class="panel">This is the top of our led that is pushed down on the main body that keeps the lens in place. It provides holes to 
+        let the wires for LEDs go through. </div>
         </div>
       </section>
 
       <section class="spacer-vertical">
         <div class="paired-row" style="align-items:center;">
-          <div class="panel">Component B description — Lorem ipsum dolor sit amet. Explanation and notes about this complementary component.</div>
+          <div class="panel">This is the bottom of our led that is press fitted on to the main body. The hole is placed parallel to the 
+        middle of the circle, where the lens focuses the laser onto, which the hole contains our photodiodes.</div>
           <div style="max-width:560px">
-            <img src="assets/extra-right.jpg" alt="Extra component B" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
+            <img src="assets/reciever_bottom.png" alt="Extra component B" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
           </div>
         </div>
       </section>
@@ -201,29 +244,13 @@
       <!-- One more less-than-hero image with text -->
       <section class="spacer-vertical">
         <div style="display:flex;justify-content:center;">
-          <img src="assets/mech-small.jpg" alt="Small feature" class="large-media">
+          <img src="assets/reciever_middle.png" alt="Small feature" class="large-media">
         </div>
-        <div style="margin-top:12px" class="panel">Feature description — Lorem ipsum dolor sit amet. Text describing the image above.</div>
+        <div style="margin-top:12px" class="panel">This is the middle part of our reciever that on top as a cicular hole to allow for room of the lens. It also has holes
+        for the IR LED wires. It is made a specifc width as the lens focuses light to a central points 50 mm behind it.</div>
       </section>
 
-      <!-- Three images next to each other with text underneath each -->
-      <section class="spacer-vertical">
-        <div class="three-grid">
-          <div>
-            <img src="assets/mech-sub1.jpg" alt="Subpart 1">
-            <div class="design-text">Subpart 1 — caption text.</div>
-          </div>
-          <div>
-            <img src="assets/mech-sub2.jpg" alt="Subpart 2">
-            <div class="design-text">Subpart 2 — caption text.</div>
-          </div>
-          <div>
-            <img src="assets/mech-sub3.jpg" alt="Subpart 3">
-            <div class="design-text">Subpart 3 — caption text.</div>
-          </div>
-        </div>
-
-        <div style="margin-top:14px" class="panel">Final notes — A paragraph that discusses each of the above subparts and closes out the mechanical section.</div>
+     
       </section>
 
       <!-- ensure footer follows immediately and has breathing room -->
