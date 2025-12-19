@@ -9,10 +9,10 @@
   <style>
     /* Page-specific sizing & spacing */
     .section-title h2 { font-size: 1.5em; }
-    .hero-large { max-width:1100px; height:520px; object-fit:cover; display:block; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
-    .large-media { width:100%; max-width:980px; height:360px; object-fit:cover; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
+    .hero-large { max-width:1100; height:580; object-fit:contain; display:block; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
+    .large-media { width:100%; max-width:980px; height:360px; object-fit:contain; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
     .three-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; align-items:start; }
-    .three-grid img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+    .three-grid img{width:100%;height:160px;object-fit:contain;border-radius:10px}
     .spacer-vertical{margin-bottom:3rem}
     .paired-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
     .paired-row.reverse{grid-template-columns:1fr 1fr;}
@@ -107,6 +107,8 @@
         <div class="section-title"><h2>Mechanical: Aspects and Design Choices</h2></div>
       </section>
 
+      <div class="section-title"><h2>Ground Station:</h2></div>
+
       <section class="spacer-vertical">
         <div style="display:flex;justify-content:center;"> 
           <img src="assets/reciever_and_transmitter.png" alt="Mechanical ground station assembly" class="hero-large">
@@ -117,8 +119,8 @@
 
       <!-- Hero shot of ground station assembly -->
       <section class="spacer-vertical">
-        <div style="display:flex;justify-content:center;">
-          <img src="assets/ground_station_assem.png" alt="Mechanical ground station assembly" class="hero-large">
+        <div class="image-wrap">
+          <img src="assets/ground_station_assem.png" alt="Power regulation and distribution" class="image-slot contain">
         </div>
         <div style="margin-top:12px" class="panel">Our Ground Station <br> <br>This image is our final assmebly for our ground station. It is entirly 3d printed. It features holdings for 
         two stepper motors, a raspberry pi, a lithium battery, two stepper motor drivers, a portable charger, and our camera.
@@ -134,7 +136,7 @@
       <!-- Large central image and text -->
       <section class="spacer-vertical">
         <div style="display:flex;justify-content:center;">
-          <img src="assets/x_stepper_holder.png" alt="Ground station section" class="large-media">
+          <img src="assets/x_stepper_holder.png" alt="Ground station section" class="large-media contain">
         </div>
         <div style="margin-top:12px" class="panel">X Axis Holder <br> <br>This part of the ground station holds our x-axis parts. This includes a motor driver (goes in right compartment), and our stepper motor
         (goes in left compartment). In the right compartment, room is also left to hold our lithium battery. </div>
@@ -205,6 +207,9 @@
         <div class="section-divider" aria-hidden="true"></div>
       </section>
 
+        <div class="section-title"><h2>Receiver:</h2></div>
+
+
         <section class="spacer-vertical">
         <div style="display:flex;justify-content:center;">
           <img src="assets/reciever_assem.png" alt="y axis" class="large-media">
@@ -224,7 +229,7 @@
       <section class="spacer-vertical">
         <div class="paired-row">
           <div style="max-width:560px">
-            <img src="assets/reciever_top.png" alt="Extra component A" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
+            <img src="assets/reciever_top.png" alt="Extra component A" style="width:100%;height:320px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
           </div>
           <div class="panel">This is the top of our led that is pushed down on the main body that keeps the lens in place. It provides holes to 
         let the wires for LEDs go through. </div>
@@ -236,7 +241,7 @@
           <div class="panel">This is the bottom of our led that is press fitted on to the main body. The hole is placed parallel to the 
         middle of the circle, where the lens focuses the laser onto, which the hole contains our photodiodes.</div>
           <div style="max-width:560px">
-            <img src="assets/reciever_bottom.png" alt="Extra component B" style="width:100%;height:320px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
+            <img src="assets/reciever_bottom.png" alt="Extra component B" style="width:100%;height:320px;object-fit:contain;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
           </div>
         </div>
       </section>
