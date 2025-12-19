@@ -63,6 +63,19 @@ main {
   font-size: 18px;
 }
 
+.image-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;          /* space between images */
+  flex-wrap: wrap;    /* stacks on small screens */
+}
+
+.image-row img {
+  max-width: 30%;     /* 3 images side by side */
+  height: auto;
+}
+
+
 .section {
   display: grid;
   gap: 18px;
