@@ -8,6 +8,11 @@
   
   <!-- Link external CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Ensure smooth scroll behavior in case style.css does not include it -->
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
 
 <script>
@@ -66,15 +71,14 @@
             Your browser does not support the video tag.
           </video>
         </div>
-          <div class="hero-caption">Demo: The final implementation of our project.</div>
+          <div class="hero-caption">Demo: The final implementation of our project. The laser is tracking the receiver and able to pulse. The tracking speed is intentionally slowed for demo.</div>
         </div>
       </header>
 
       <!-- Overview Section -->
       <section id="overview">
         <div class="section-title"><h2>Project Overview</h2></div>
-        <div class="panel placeholder">Our project was a laser communication system that had two main components: A receiver and a transmitter. <br> <br>
-            The transmitter's purpose was two main things: Track the receiver's IR LEDs, and encode data at a goal transmission rate of 10 kBits/sec. <br> The receiver had two of its own goals: Read if a laser is hitting it, and process whatever data the laser may be sending. Ultimately, this system allows us to move the reciever anywhere within a 30 foot range, and the laser will be able to track it, and beam it data using our laser.</div>
+        <div class="panel placeholder">Our initial goal was to develop a system that could track a moving receiver and send data to it via a laser to give flight instruction updates to a drone. We quickly realised that sending flight data to a drone would be infeasible because we wouldn't have a good way to know if we were on target or just missing the receiver. As a result we ended up pivoting to sending audio data to a speaker, which has many of the same principals but the quality of the audio (relatively speaking) is a good way to know if the laser is accurately hitting the target. We are also able to eliminate the extra complexities of drone movement by simply moving it by hand and listening for audio. <br> <br> There were many revisions made along the development process from increasing the effective laser sensing area in the receiver to adjusting the wiring of the transmitter gimbal. They are outlined in greater detail in their respective subsections. <br> <br> In the end we were able to track the receiver and play a tone whenever the laser was on the receiver. We found the greatest challenge and hindrance to progress to be the difficulties involved in designing a data communication protocol and debugging it. This website documents our process, choices, and progress.</div>
       </section>
     </div>
 
@@ -82,8 +86,32 @@
     <div class="grad g2">
       <!-- Demo Section -->
       <section id="demo">
-        <div class="section-title"><h2>Demo</h2></div>
-        <div class="panel placeholder">Demo — Final system in action.</div>
+        <div class="section-title"><h2>Demo Shots</h2></div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div style="max-width:560px">
+            <img
+              src="assets/demo1.jpg"
+              alt="Demo 1"
+              style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.04)"
+            >
+            <div style="margin-top:12px" class="panel">
+              Receiver perspective of transmission with laser centered.
+            </div>
+          </div>
+
+          <div style="max-width:560px">
+            <img
+              src="assets/demo2.jpg"
+              alt="Demo 2"
+              style="width:100%;height:320px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.04)"
+            >
+            <div style="margin-top:12px" class="panel">
+              Transmitter gimbal tracking and shining laser at receiver.
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <!-- Design Areas Section -->
@@ -108,10 +136,10 @@
 
     <!-- Gradient Group 3: BOM + Footer -->
     <div class="grad g3">
-      <!-- BOM Section -->
-      <div class="section-title"><h2>BOM:</h2></div>
+      <!-- BOM Section (added id so #bom works) -->
+      <section id="bom" class="spacer-vertical" style="scroll-margin-top:120px;">
+        <div class="section-title"><h2>BOM:</h2></div>
 
-      <section class="spacer-vertical">
         <div style="margin-top:12px" class="panel">Bill of Materials for all project components.</div>
 
         <div style="display:flex;justify-content:center;">
@@ -119,14 +147,12 @@
         </div>
       </section>
 
-      
-
       <!-- Footer -->
       <footer aria-label="Footer">
         <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:flex-start">
           <div>
             <div style="font-weight:600;color:var(--text)">Lazy Engineers: Optical Communications</div>
-           <div style="margin-top:6px">Team: Bradford Cooper, Troy Anderson, Suraj Reddy, Sreesanth Adelli</div>
+            <div style="margin-top:6px">Team: Bradford Cooper, Troy Anderson, Suraj Reddy, Sreesanth Adelli</div>
             <div style="margin-top:6px">Course: Principals of Integrated Engineering</div>
           </div>
           <div style="text-align:right">
