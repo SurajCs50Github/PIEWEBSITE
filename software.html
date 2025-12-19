@@ -346,7 +346,7 @@ finally:
         <div class="section-title"><h2>Transmission and Reception:</h2></div>
 
         <div style="display:flex;justify-content:center;">
-          <img src="assets/sw-orch.jpg" alt="System B screenshot" style="width:100%;max-width:980px;height:420px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
+          <img src="assets/transceiver_diagram.png" alt="System B screenshot" style="width:100%;max-width:980px;height:420px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">
         </div>
 
         <div style="margin-top:12px" class="panel">
@@ -440,7 +440,7 @@ class Orchestrator:
       const txt = document.getElementById('snippet')?.innerText || '';
       try { await navigator.clipboard.writeText(txt); const b = document.getElementById('copy-snippet'); const old = b.innerText; b.innerText = 'Copied'; setTimeout(()=> b.innerText = old, 1200); } catch(e){ alert('Copy failed — please select and copy manually.'); }
     });
-
+1
     // copy snippet 2
     document.getElementById('copy-snippet-2')?.addEventListener('click', async ()=>{
       const txt = document.getElementById('snippet-2')?.innerText || '';
